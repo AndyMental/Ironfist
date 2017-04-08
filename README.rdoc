@@ -1,0 +1,1 @@
+rails generate migration add_roles_to_users superadmin_role:boolean storeowner_role:boolean storemanager_role:boolean affiliate_role:boolean enabler_role:boolean customer:boolean

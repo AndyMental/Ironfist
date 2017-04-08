@@ -1,0 +1,64 @@
+<h1>Navigation</h1>
+<% if current_user.nil? %>
+      <p><%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %></p>
+<% else %>
+    <% if user_signed_in? %>
+        <ul>
+          <li>
+            <%= link_to('Edit registration', edit_user_registration_path) %>
+          </li>
+          <li>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+          </li>
+        </ul>
+    <% else %>
+        <ul>
+          <li>
+            <%= link_to('Register', new_user_registration_path)  %>
+          </li>
+          <li>
+            <%= link_to('Login', new_user_session_path)  %>
+          </li>
+        </ul>
+    <% end %>
+<% end %>
+<%= current_user.role %>
+
+<% case current_user.role
+
+     when /Superadmin/ %>
+    <h1>Section for Superadmin</h1>
+    <p>You can see this becuase your role is defined as Superadmin</p>
+
+  <% when /Storeowner/ %>
+    <h1>Section for storeowner</h1>
+    <p>You can see this becuase your role is defined as storeowner</p>
+
+  <% when /Storemanager/ %>
+    <h1>Section for storemanager_role</h1>
+    <p>You can see this becuase your role is defined as storemanager_role</p>
+
+  <% when /Affiliate/ %>
+    <h1>Section for affiliate_role</h1>
+    <p>You can see this becuase your role is defined as affiliate_role</p>
+
+  <% when /Enabler/ %>
+    <h1>Section for enabler_role</h1>
+    <p>You can see this becuase your role is defined as enabler_role</p>
+
+  <% when /Customer/ %>
+    <h1>Section for customer</h1>
+    <p>You can see this becuase your role is defined as customer</p>
+
+  <% when /Demo/ %>
+    <h1>Section for demo</h1>
+    <p>You can see this becuase your role is defined as demo</p>
+
+  <% else %>
+    <h1>No role</h1>
+
+<% end %>
+
+
+
+

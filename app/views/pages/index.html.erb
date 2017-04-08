@@ -1,0 +1,29 @@
+<h1>Navigation</h1>
+<% if current_user.nil? %>
+      <p><%= link_to new_user_session_path, class: 'login-button' do %>Sign in<% end %></p>
+<% else %>
+    <% if user_signed_in? %>
+        <ul>
+          <li>
+            <%= link_to('Edit registration', edit_user_registration_path) %>
+          </li>
+          <li>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+          </li>
+        </ul>
+    <% else %>
+        <ul>
+          <li>
+            <%= link_to('Register', new_user_registration_path)  %>
+          </li>
+          <li>
+            <%= link_to('Login', new_user_session_path)  %>
+          </li>
+        </ul>
+    <% end %>
+<% end %>
+
+
+<h1>Pages</h1>
+<p><%= link_to "Business", :controller => :pages, :action => :business %></p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet officiis commodi corporis quia reprehenderit provident iusto unde vitae, voluptas eum libero et a alias doloribus quos soluta laborum eligendi quas.</p>
