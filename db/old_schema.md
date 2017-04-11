@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411080405) do
+ActiveRecord::Schema.define(version: 20170406230226) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -25,9 +25,12 @@ ActiveRecord::Schema.define(version: 20170411080405) do
 
   create_table "carts", force: :cascade do |t|
     t.integer  "shop_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "customer_id"
   end
+
+  add_index "carts", ["customer_id"], name: "index_carts_on_customer_id"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -35,6 +38,26 @@ ActiveRecord::Schema.define(version: 20170411080405) do
     t.datetime "updated_at",                null: false
     t.boolean  "is_active",  default: true
   end
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "shop_id"
+  end
+
+  add_index "customers", ["email"], name: "index_customers_on_email", unique: true
+  add_index "customers", ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
+  add_index "customers", ["shop_id"], name: "index_customers_on_shop_id"
 
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
@@ -47,6 +70,7 @@ ActiveRecord::Schema.define(version: 20170411080405) do
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
 
   create_table "orders", force: :cascade do |t|
+    t.integer  "customer_id"
     t.integer  "shop_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -106,9 +130,12 @@ ActiveRecord::Schema.define(version: 20170411080405) do
     t.string   "country"
     t.string   "phone"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "customer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
+
+  add_index "shipping_addresses", ["customer_id"], name: "index_shipping_addresses_on_customer_id"
 
   create_table "shops", force: :cascade do |t|
     t.string   "name",                         null: false
@@ -136,31 +163,6 @@ ActiveRecord::Schema.define(version: 20170411080405) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "name"
-    t.string   "phone"
-    t.string   "type"
-    t.string   "otp"
-    t.string   "otp_verified_at"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "role"
-  end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["phone"], name: "index_users_on_phone", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
   create_table "wishlist_items", force: :cascade do |t|
     t.integer  "wishlist_id"
     t.integer  "product_id"
@@ -172,8 +174,11 @@ ActiveRecord::Schema.define(version: 20170411080405) do
 
   create_table "wishlists", force: :cascade do |t|
     t.integer  "shop_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "customer_id"
   end
+
+  add_index "wishlists", ["customer_id"], name: "index_wishlists_on_customer_id"
 
 end

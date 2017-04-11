@@ -1,4 +1,4 @@
-admin
+dashboard
   products
     categories CRUD
     subcategories CRUD
