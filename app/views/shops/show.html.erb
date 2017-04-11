@@ -1,0 +1,29 @@
+<div class="page-header">
+  <%= link_to shops_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_shop_path(@shop), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show shop</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @shop.name %></dd>
+
+  <dt>Domain:</dt>
+  <dd><%= @shop.domain %></dd>
+
+  <dt>Theme:</dt>
+  <dd><%= @shop.theme %></dd>
+
+  <dt>Shop owner:</dt>
+  <dd><%= @shop.shop_owner_id %></dd>
+
+  <dt>Is active:</dt>
+  <dd><%= @shop.is_active %></dd>
+
+</dl>

@@ -1,1 +1,151 @@
 rails generate migration add_roles_to_users superadmin_role:boolean storeowner_role:boolean storemanager_role:boolean affiliate_role:boolean enabler_role:boolean customer:boolean
+
+
+class AddShopIdToCustomers < ActiveRecord::Migration
+  def change
+    add_column :customers, :shop_id, :integer
+
+    add_index :customers, :shop_id
+  end
+end
+
+
+
+
+
+
+
+namespace :admin do
+  resources :products
+end
+
+Admin::ProductsController < ApplicationController
+
+PagesController.action_methods.each do |action|
+    get "/#{action}", to: "pages##{action}", as: "#{action}_page"
+  end
+
+
+
+
+  get 'subcategories/new'
+
+  get 'subcategories/create'
+
+  get 'subcategories/update'
+
+  get 'subcategories/edit'
+
+  get 'subcategories/destroy'
+
+  get 'subcategories/index'
+
+  get 'subcategories/show'
+
+  get 'shops/new'
+
+  get 'shops/create'
+
+  get 'shops/update'
+
+  get 'shops/edit'
+
+  get 'shops/destroy'
+
+  get 'shops/index'
+
+  get 'shops/show'
+
+  get 'shop_owners/new'
+
+  get 'shop_owners/create'
+
+  get 'shop_owners/update'
+
+  get 'shop_owners/edit'
+
+  get 'shop_owners/destroy'
+
+  get 'shop_owners/index'
+
+  get 'shop_owners/show'
+
+  get 'products/new'
+
+  get 'products/create'
+
+  get 'products/update'
+
+  get 'products/edit'
+
+  get 'products/destroy'
+
+  get 'products/index'
+
+  get 'products/show'
+
+  get 'product_reviews/new'
+
+  get 'product_reviews/create'
+
+  get 'product_reviews/update'
+
+  get 'product_reviews/edit'
+
+  get 'product_reviews/destroy'
+
+  get 'product_reviews/index'
+
+  get 'product_reviews/show'
+
+  get 'enablers/new'
+
+  get 'enablers/create'
+
+  get 'enablers/update'
+
+  get 'enablers/edit'
+
+  get 'enablers/destroy'
+
+  get 'enablers/index'
+
+  get 'enablers/show'
+
+  get 'categories/new'
+
+  get 'categories/create'
+
+  get 'categories/update'
+
+  get 'categories/edit'
+
+  get 'categories/destroy'
+
+  get 'categories/index'
+
+  get 'categories/show'
+
+  get 'admins/new'
+
+  get 'admins/create'
+
+  get 'admins/update'
+
+  get 'admins/edit'
+
+  get 'admins/destroy'
+
+  get 'admins/index'
+
+  get 'admins/show'
+
+
+
+  devise_for :users, controllers: {
+      sessions: 'users/sessions',
+      passwords: 'users/passwords',
+      registrations: 'users/registrations'
+  }
+
+  get "pages/business"

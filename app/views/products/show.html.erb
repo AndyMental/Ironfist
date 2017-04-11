@@ -1,0 +1,46 @@
+<div class="page-header">
+  <%= link_to products_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <%= link_to edit_product_path(@product), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show product</h1>
+</div>
+
+<% @product_images.each do |p| %>
+<div class="col-sm-4 col-lg-4 col-md-4">
+  <div class="thumbnail">
+    <%= image_tag p.image_url(:small) %>
+    <div class="caption">
+      <%= link_to "Edit Photos", edit_product_image_path(p) %> | <%= link_to "Remove", p, :confirm => 'Are you sure?', :method => :delete %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<dl class="dl-horizontal">
+
+  <dt>Category:</dt>
+  <dd><%= @product.category_id %></dd>
+  <dt>Subcategory:</dt>
+  <dd><%= @product.subcategory_id %></dd>
+  <dt>Name:</dt>
+  <dd><%= @product.name %></dd>
+  <dt>Price:</dt>
+  <dd><%= @product.price %></dd>
+  <dt>Private:</dt>
+  <dd><%= @product.private %></dd>
+  <dt>Description:</dt>
+  <dd><%= @product.description %></dd>
+  <dt>Count:</dt>
+  <dd><%= @product.count %></dd>
+  <dt>Is featured:</dt>
+  <dd><%= @product.is_featured %></dd>
+  <dt>Is active:</dt>
+  <dd><%= @product.is_active %></dd>
+  <dt>Shop:</dt>
+  <dd><%= @product.shop_id %></dd>
+</dl>
